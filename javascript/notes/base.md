@@ -461,3 +461,301 @@ for (let i = 0; i <= 10; i++) {
   console.log(i);
 }
 ```
+
+## 函数
+
+### 函数的定义和使用
+
+```javascript
+// ------------------------
+// --------------------------------- 函数
+// ------------------------
+
+console.clear();
+
+// 定义函数
+function putInRefrigerator() {
+  console.log("open refrigerator");
+  console.log("put elephant in");
+  console.log("close refrigerator");
+  return "success!";
+}
+
+function putAnythingInRefrigerator(anything) {
+  console.log("open refrigerator");
+  console.log("put " + anything + " in");
+  console.log("close refrigerator");
+  return "success!";
+}
+
+// 调用函数
+info = putInRefrigerator();
+console.log(info);
+
+console.log(putAnythingInRefrigerator("apple"));
+```
+
+### 函数表达式匿名函数 变量提升 默认值 递归 不定长参数
+
+```javascript
+//函数表达式
+
+function plus(a, b) {
+  return a + b;
+}
+console.log(plus(3, 8));
+// 11
+
+var res = plus(2, 4);
+console.log(res);
+// 6
+
+// 匿名函数
+var multiply = function (a, b) {
+  return a * b;
+};
+
+console.log(multiply(5, 5));
+// 25
+
+// 变量和函数提升
+// 可以将函数放在底部，这样也能在函数定义的前方调用函数
+console.clear();
+
+// 调用函数，在函数声明的上方
+console.log(divide(10, 5));
+
+// 定义函数，在函数块之前也能调用函数
+function divide(a, b) {
+  return a / b;
+}
+
+// 默认参数
+
+function greeting(name = "kelvin") {
+  console.log("hello " + name + " !");
+}
+
+greeting();
+// hello kelvin !
+greeting("lucy");
+// hello lucy !
+
+function greetingWithWeather(name = "kelvin", weather) {
+  console.log("你好 " + name + "，今天是： " + weather);
+}
+
+// 调用顺序
+greetingWithWeather(undefined, "晴天");
+
+// 函数的递归
+console.clear();
+
+function sum(n) {
+  if (n === 1) {
+    return 1;
+  }
+  return n + sum(n - 1);
+}
+console.log(sum(100));
+
+// arguments 不定长参数
+function log() {
+  for (let i = 0; i < arguments.length; i++) console.log(arguments[i]);
+}
+
+log("info_1", "info_2", "info_3");
+```
+
+### 函数作用域 与 `let` `var` 的区别
+
+```javascript
+// 函数作用域
+
+var z = 10;
+function add_02(a) {
+  // 函数内调用全局变量
+  return a + z;
+}
+
+console.log(add_02(4));
+
+function add_03(a) {
+  // 定义了一个局部变量
+  var local_a = 10;
+  console.log(a);
+  console.log(local_a);
+}
+
+add_03(3);
+// 函数内的局部变量 `local_a`无法在全局被访问
+// console.log(local_a);
+// !报错
+
+// `var` 和 `let`的区别
+
+console.clear();
+
+var z = 10;
+if (z > 2) {
+  console.log(z);
+  var innerZ = 17;
+  let innerY = 20;
+}
+
+// if 语句块内定义的var定义的变量能被全局调用
+console.log(innerZ);
+// 17
+// if 语句块内定义的`let'变量变量不能被全局引用
+// console.log(innerY);
+// 报错
+
+console.clear();
+
+// `var`
+for (var innerI = 1; innerI < 6; innerI++) {
+  console.log(innerI);
+}
+console.log("var innerI: " + innerI);
+// 1, 2, 3, 4, 5
+
+// `let`
+for (let innerJ = 1; innerJ < 6; innerJ++) {
+  console.log(innerJ);
+}
+
+// !`let`定义的局部变量外部无法访问
+// console.log("var innerJ: " + innerJ);
+// 报错
+
+console.clear();
+```
+
+### 箭头函数 闭包 柯里化 回调函数
+
+```javascript
+// 箭头函数
+
+// 没用携带参数，必须写出`()`括号
+var greeting = () => {
+  console.log("hello!");
+};
+
+greeting();
+
+// 尽管携带参数，也推荐使用小括号包裹
+var greetingWithName = (name, weather) => {
+  console.log("hello " + name + weather);
+};
+
+greetingWithName("kelvin", ", sunny today");
+
+// 一行简写, 省略return关键词
+var increment = (x) => x + 1;
+console.log(increment(5));
+// 6
+
+// 闭包
+
+function squareSum(a, b) {
+  function square(x) {
+    return x * x;
+  }
+
+  return square(a) + square(b);
+}
+
+console.log(squareSum(2, 3));
+// 13
+
+console.clear();
+// 高阶函数 higher-order-function
+
+function person() {
+  let name = "kelvin";
+  // 闭包函数
+  function getName() {
+    return name;
+  }
+  // 外界只能访问 `name`而不能修改
+  return getName;
+}
+
+var getName = person();
+console.log(getName);
+console.log(getName());
+
+console.clear();
+// 柯里化
+
+function addThreeNums(a, b, c) {
+  return a + b + c;
+}
+console.log(addThreeNums(1, 2, 3));
+// 6
+
+function addThreeNumsCurry(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(addThreeNumsCurry(1)(2)(3));
+// 6
+
+// 柯里化，函数保存结果
+var fixedTwo = addThreeNumsCurry(1)(2);
+console.log(fixedTwo(4));
+// 1 + 2 + 4 = 7
+console.log(fixedTwo(10));
+// 1 + 2 + 10 = 13
+
+console.clear();
+// 自执行函数
+var num1 = 10;
+
+// 自执行函数内部变量不会影响外部
+(function () {
+  var num1 = 20;
+  console.log(num1);
+  // 20
+})(); // 小括号表示自执行
+
+// 不受自执行函数影响
+console.log(num1);
+// 10
+
+// 回调函数
+console.clear();
+
+function request(cd, name1) {
+  console.log("请求数据");
+  // 执行回调函数
+  cd(name1);
+  console.log("请求结束");
+}
+
+// 定义回调函数
+function callback(name) {
+  console.log("执行回调");
+  console.log(name);
+}
+
+request(callback, "kelvin");
+// 请求数据
+// 执行回调
+// kelvin
+// 请求结束
+
+// 箭头函数简写式回调函数（不可复用）
+request((name) => {
+  console.log("执行回调");
+  console.log(name);
+}, "lucy");
+// 请求数据
+// 执行回调
+// lucy
+// 请求结束
+```

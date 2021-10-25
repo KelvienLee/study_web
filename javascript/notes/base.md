@@ -759,3 +759,303 @@ request((name) => {
 // lucy
 // 请求结束
 ```
+
+## 数组
+
+```javascript
+// ------------------------
+// --------------------------------- 数组
+// ------------------------
+
+console.clear();
+
+var arr1 = [1, 2, 3];
+console.log(arr1);
+
+var arr2 = new Array(4, 5, 6);
+console.log(arr2);
+
+var arr3 = Array(7, 8, 9);
+console.log(arr3);
+
+var arr4 = Array.of(10, 11, 12);
+console.log(arr4);
+
+// 如果创建一个数组只有一个值
+// `Array`方法会创建n个空值
+var arrSingle = Array(6);
+console.log(arrSingle);
+// empty x 6
+
+// `new Array`方法也会创建n个空值
+var arrSingle2 = new Array(7);
+console.log(arrSingle2);
+// empty x 7
+
+// `Array.of`方法可以创建单个值的数组
+var arrSingle3 = Array.of(8);
+console.log(arrSingle3);
+// 8
+
+// 字面意义直接创建单个值的数组
+var arrSingle4 = [9];
+console.log(arrSingle4);
+// 9
+
+// 访问数组
+// 通过下标或索引
+
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(arr.length);
+console.log(arr[0]);
+// 超过索引
+console.log(arr[10]);
+// undefined
+
+// 添加元素
+console.clear();
+
+var arr5 = [1, 2, 3];
+arr5[0] = 0;
+console.log(arr5);
+// 0, 2, 3
+
+arr5[6] = 6;
+console.log(arr5);
+//  [0, 2, 3, empty × 3, 6]
+
+console.clear();
+// 删除元素
+var arr6 = [1, 2, 3, 4, 5];
+// 删除末端
+arr6.length = 3;
+console.log(arr6);
+// [1, 2, 3]
+
+// 清空
+arr6.length = 0;
+console.log(arr6);
+// []
+
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6];
+
+// splice 删除替换的使用
+// (删除索引，删除的数量)
+arr.splice(2, 1);
+console.log(arr);
+// 1,2,4,5,6
+
+var arr = [1, 2, 3, 4, 5, 6];
+arr.splice(1, 2);
+console.log(arr);
+// 1, 4, 5, 6
+
+var arr = [1, 2, 3, 4, 5, 6];
+arr.splice(1, 2, 7, 8, 9);
+console.log(arr);
+// 1, 7, 8, 9, 4, 5, 6
+
+// 数组的遍历
+// 数组的长度比索引多一 `i < arr.length`
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// `for...of`
+console.log("for...of");
+for (let ele of arr) {
+  console.log(ele);
+}
+
+// forEach
+
+arr.forEach((ele, index, self) => {
+  console.log(ele, index, self);
+});
+
+console.clear();
+
+// 栈模式
+
+// 入栈
+var stack = [1, 2, 3];
+stack.push(4);
+console.log(stack);
+// [1, 2, 3, 4]
+stack.push(5, 6, 7);
+console.log(stack);
+// [1, 2, 3, 4, 5, 6, 7]
+
+// 出栈
+// `pop`方法会移除最后一个值
+var last = stack.pop();
+
+// 最后一个数字
+console.log(last);
+// 7
+
+console.log(stack);
+// 7 已被移除
+// [1, 2, 3, 4, 5, 6]
+
+console.log(stack[stack.length - 1]);
+// 最后一个值
+
+// 队列模式
+
+// 入队
+var queue = [1, 2, 3];
+queue.push(4, 5, 6);
+console.log(queue);
+// [1, 2, 3, 4, 5, 6]
+
+// 出队
+var first = queue.shift();
+console.log(first);
+// 1
+console.log(queue);
+// 2, 3, 4, 5, 6
+
+// 插队
+queue.unshift(10, 11, 12);
+console.log(queue);
+// [10, 11, 12, 2, 3, 4, 5, 6]
+
+console.clear();
+
+// 翻转数组
+var arr = [1, 2, 3, 4, 5, 6];
+console.log(arr.reverse());
+// [6, 5, 4, 3, 2, 1]
+console.log(arr);
+// [6, 5, 4, 3, 2, 1]
+
+var str = "hello".split("");
+console.log(str);
+// ['h', 'e', 'l', 'l', 'o']
+console.log(str.reverse());
+// ['o', 'l', 'l', 'e', 'h']
+
+console.clear();
+
+// 数组排序
+
+var arr = [2, 5, 8, 1, 3, 6];
+
+arr.sort();
+console.log(arr);
+// [1, 2, 3, 5, 6, 8]
+
+// 自定义一个排序函数 倒序只是例子，可自行编写功能
+// arr.sort((a, b) => {
+//   if (a > b) {
+//     return -1;
+//   } else if (a < b) {
+//     return 1;
+//   } else {
+//     return 0;
+//   }
+// });
+
+// 上面函数的简写，妙不可言~
+arr.sort((a, b) => b - a);
+
+console.log(arr);
+
+console.clear();
+// 数组连接
+
+var arr1 = [1, 2, 3];
+var arr2 = [4, 5, 6];
+var arr3 = [7, 8, 9];
+
+console.log(arr1.concat(arr2, arr3));
+//  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+console.clear();
+
+// 数组切片
+
+var arr = [1, 2, 3, 4, 5, 6];
+
+console.log(arr.slice(1));
+// 同python, 不包含右值
+console.log(arr.slice(2, 4));
+console.log(arr.slice(3, -1));
+
+console.clear();
+
+// map 数组
+// 返回组成一个新数组
+
+var arr = [1, 2, 3, 4, 5, 6];
+var mappedArr = arr.map((ele) => ele * 2);
+console.log(mappedArr);
+console.log(arr);
+
+// 数组 reduce
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6];
+var result = arr.reduce((previous, current) => previous + current, 0);
+console.log(result);
+
+var result2 = arr.reduce((first, second) => first + second);
+console.log(result2);
+
+// 数组过滤
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6];
+var filteredArr = arr.filter((item) => item > 4);
+console.log(filteredArr);
+// 5,6
+
+// 数组测试
+console.clear();
+
+var arr = [1, 2, 3, 4, 5, 6];
+
+// 检测每一个数值
+var result = arr.every((item) => item > 0);
+console.log(result);
+// true
+
+// 检测一些数值
+var resultSome = arr.some((item) => item > 5);
+console.log(resultSome);
+
+// 解构操作符
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6];
+var [a, b, c, d, e, f] = arr;
+console.log(a, b, c, d, e, f);
+
+// rest操作符
+
+console.clear();
+var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+var [a, b, ...rest] = arr;
+console.log(a, b, rest);
+// 1 2 (6) [3, 4, 5, 6, 7, 8]
+
+// 不定长参数的函数
+function variousArgs(...args) {
+  console.log(args);
+}
+
+variousArgs(1, 3, 5);
+// (3) [1, 3, 5]
+
+// 多维数组
+
+console.clear();
+var arr = [];
+for (let i = 0; i < 5; i++) {
+  arr[i] = [];
+  for (let j = 0; j < 4; j++) {
+    arr[i][j] = i + j;
+  }
+}
+console.log(arr);
+```

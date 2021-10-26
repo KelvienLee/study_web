@@ -1020,3 +1020,120 @@ for (let i = 0; i < 5; i++) {
   }
 }
 console.log(arr);
+
+console.clear();
+
+// ------------------------
+// --------------------------------- 面向对象编程
+// ------------------------
+
+// 创建对象
+// 方法一
+var employee = {
+  name: "张三",
+  age: 20,
+  position: "前端工程师",
+  signIn: function () {
+    console.log("从事前端工作");
+  },
+};
+
+// 方法二
+var employee2 = new Object();
+employee2.name = "李四";
+employee2.age = 21;
+employee2.position = "后端工程师";
+employee2.signIn = function () {
+  console.log("从事后端工作");
+};
+
+// 对象属性
+
+console.log(employee.name);
+// 张三
+console.log(employee["age"]);
+// 20
+
+// 更新对象属性
+employee.name = "王五";
+console.log(employee.name);
+// 王五
+employee.age = 25;
+console.log(employee.age);
+// 25
+
+// 添加属性
+employee.gender = "male";
+console.log(employee.gender);
+// male
+
+var employee3 = new Object();
+employee3.name = "周六";
+employee3.birthDate = "1999-03-01";
+
+console.log(employee3.birthDate);
+// 1999-03-01
+
+// 省略 key
+
+console.clear();
+var employee4 = {
+  signIn() {
+    console.log("hello");
+  },
+};
+
+console.log(employee4.signIn());
+
+console.clear();
+
+// 遍历对象所有属性
+console.log(Object.keys(employee));
+// (5) ['name', 'age', 'position', 'signIn', 'gender']
+
+for (key in employee) {
+  console.log(key);
+}
+// demo.js:1095 name
+// demo.js:1095 age
+// demo.js:1095 position
+// demo.js:1095 signIn
+// demo.js:1095 gender
+
+// 删除对象属性
+
+delete employee.name;
+console.log(Object.keys(employee));
+// (4) ['age', 'position', 'signIn', 'gender']
+
+// 构造函数
+console.clear();
+
+function Employee(name, position) {
+  this.name = name;
+  this.position = position;
+}
+
+var emp1 = new Employee("kelvin", "前端工程师");
+console.log(emp1);
+
+var emp2 = new Employee("lucy", "后端工程师");
+console.log(emp2);
+
+// this
+
+var emp3 = {
+  name: "李四",
+  position: "后端工程师",
+  sighIn() {
+    console.log(this.name + "上班打卡");
+  },
+};
+
+emp3.sighIn();
+
+emp3.goToWork = function () {
+  console.log(this.name + "去上班");
+};
+
+emp3.goToWork();

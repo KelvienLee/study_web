@@ -159,3 +159,72 @@ let str2 = "hello world";
 console.log(str2.replace("world", "Js"));
 // hello Js
 ```
+
+## 布尔值转换
+
+```javascript
+// 布尔值隐式转换
+let bool = true;
+console.log(typeof bool);
+
+console.log(1 == true);
+// true
+console.log(0 == false);
+// true
+console.log(99 == true);
+// false
+
+let num = 99;
+console.log(Boolean(num) == true);
+// true
+
+let negative_num = -99;
+console.log(typeof negative_num);
+// number
+console.log(Boolean(negative_num) == false);
+// false
+console.log(Boolean(negative_num).valueOf());
+// true
+console.clear();
+// 字符串布尔值转换
+let str = "1";
+console.log(str == true);
+// true
+let str0 = "0";
+console.log(str0 == false);
+// true
+
+str99 = "99";
+console.log(str99 == true);
+// false
+console.log(Boolean(str) == true);
+// true
+```
+
+### NaN
+
+```javascript
+console.log(Number("hello"));
+// NaN
+
+console.log(10 / "hello");
+// NaN
+
+console.log(NaN == NaN);
+// false
+
+let numWithStr = "99years";
+console.log(Number(numWithStr));
+// NaN
+
+console.log(parseInt(numWithStr));
+// 99
+
+let num1 = "abc11def";
+console.log(parseInt(num1));
+// NaN
+
+let num2 = "33.88pound";
+console.log(parseFloat(num2));
+// 33.88
+```

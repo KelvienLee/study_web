@@ -248,7 +248,7 @@ console.clear();
 
   // 负值
   console.log(str.slice(-6, -1));
-  // Strin
+  // 9Strin
 
   // `str.substring(start [, end])`
   // 1. 与`slice`方法几乎相同，但允许 start 大于 end
@@ -293,4 +293,140 @@ console.clear();
   let str2 = "hello world";
   console.log(str2.replace("world", "Js"));
   // hello Js
+}
+
+// ------------------------
+// --------------------------------- bool值转换
+// ------------------------
+
+console.clear();
+{
+  // 布尔值隐式转换
+  let bool = true;
+  console.log(typeof bool);
+
+  console.log(1 == true);
+  // true
+  console.log(0 == false);
+  // true
+  console.log(99 == true);
+  // false
+
+  let num = 99;
+  console.log(Boolean(num) == true);
+  // true
+
+  let negative_num = -99;
+  console.log(typeof negative_num);
+  // number
+  console.log(Boolean(negative_num) == false);
+  // false
+  console.log(Boolean(negative_num).valueOf());
+  // true
+  console.clear();
+  // 字符串布尔值转换
+  let str = "1";
+  console.log(str == true);
+  // true
+  let str0 = "0";
+  console.log(str0 == false);
+  // true
+
+  str99 = "99";
+  console.log(str99 == true);
+  // false
+  console.log(Boolean(str) == true);
+  // true
+}
+
+console.clear();
+
+// {
+//   while (true) {
+//     let age = prompt("age?").trim();
+//     if (!age) continue;
+//     console.log(age == "18" ? "true" : "false");
+//     break;
+//   }
+// }
+
+// ------------------------
+// --------------------------------- Number数值类型
+// ------------------------
+
+{
+  let number = 99;
+  console.log(typeof number);
+  // number
+  console.log(Number.isInteger(number));
+  // true
+
+  let float = 99.99;
+  console.log(Number.isInteger(float));
+  // false
+}
+
+// NaN 类型  期待是一个数字而不是数字
+console.clear();
+{
+  console.log(Number("hello"));
+  // NaN
+
+  console.log(10 / "hello");
+  // NaN
+
+  console.log(NaN == NaN);
+  // false
+
+  let numWithStr = "99years";
+  console.log(Number(numWithStr));
+  // NaN
+
+  console.log(parseInt(numWithStr));
+  // 99
+
+  let num1 = "abc11def";
+  console.log(parseInt(num1));
+  // NaN
+
+  let num2 = "33.88pound";
+  console.log(parseFloat(num2));
+  // 33.88
+}
+console.clear();
+
+// 数学计算
+{
+  console.log(Math.max(1, 2, 3, 4, 5, 6, 7));
+  // 7
+
+  // 向下舍入
+  console.log(Math.floor(3.9));
+  // 3
+
+  // 向上舍入
+  console.log(Math.ceil(3.1));
+  // 4
+
+  // 四舍五入
+  console.log(Math.round(3.4));
+  // 3
+  console.log(Math.round(3.6));
+  // 4
+
+  // 舍弃小数点后所有数据
+  console.log(Math.trunc(3.343453454));
+  // 3
+
+  // 四舍五入到指定位数
+  console.log((3.1415926).toFixed(2));
+  // String: 3.14
+
+  // Math.random()  0 <= ~ <1
+  randomNum = Math.random().toFixed(1) * 10;
+  console.log(randomNum);
+
+  // 区间公式 min + Math.floor(Math.random() * (max - min + 1))
+  rand = 1 + Math.floor(Math.random() * (10 - 1 + 1));
+  console.log(rand);
 }

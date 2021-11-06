@@ -430,3 +430,108 @@ console.clear();
   rand = 1 + Math.floor(Math.random() * (10 - 1 + 1));
   console.log(rand);
 }
+console.clear();
+
+{
+  const date = new Date();
+  console.log(date);
+  console.log(typeof date);
+  // object
+
+  console.log(date * 1);
+  // 返回时间戳
+
+  const da = Date();
+  console.log(da);
+  console.log(typeof da);
+  // string
+
+  // 直接获取时间戳
+  console.log(Date.now());
+
+  const start = Date.now();
+
+  for (let i = 0; i < 200000000; i++) {}
+
+  const end = Date.now();
+  console.log(end - start);
+  // 返回毫秒
+  console.log(((end - start) / 1000).toFixed(2) + " seconds");
+  // 转换为秒
+
+  // 时间类型转换为时间戳
+  console.log(date * 1);
+  console.log(Number(date));
+  console.log(date.valueOf());
+  console.log(date.getTime());
+
+  // 转换为ISO时间
+  const timeStamp = date.valueOf();
+  console.log(new Date(timeStamp));
+  // Wed Oct 27 2021 19:53:10 GMT+0800 (中国标准时间)
+}
+console.clear();
+{
+  // 日期封装函数
+  const date = new Date(1999, 1, 12, 22, 10, 00);
+  console.log(date.getTime());
+  // 918828600000
+  console.log(date.getFullYear());
+  // 1999
+  console.log(date.getMonth());
+  // 1
+  console.log(date.getDate());
+  // 12
+  console.log(date.getHours());
+  // 22
+  console.log(date.getMinutes());
+  // 10
+  console.log(date.getSeconds());
+  // 0
+
+  function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
+    const config = {
+      YYYY: date.getFullYear(),
+      MM: date.getMonth(),
+      DD: date.getDate(),
+      HH: date.getHours(),
+      mm: date.getMinutes(),
+      ss: date.getSeconds(),
+    };
+    for (const key in config) {
+      format = format.replace(key, config[key]);
+    }
+    return format;
+  }
+  console.log(dateFormat(date));
+}
+
+console.clear();
+// 时间处理库
+{
+}
+var twoSum = function (nums, target) {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    } else {
+      map.set(nums[i], i);
+    }
+    return [];
+  }
+};
+
+var twoSum = function (nums, target) {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    } else {
+      map.set(nums[i], i);
+    }
+  }
+  return [];
+};

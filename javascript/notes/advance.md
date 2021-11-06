@@ -201,6 +201,91 @@ console.log(Boolean(str) == true);
 // true
 ```
 
+## Number 数据类型
+
+```javascript
+// ------------------------
+// --------------------------------- Number数值类型
+// ------------------------
+
+{
+  let number = 99;
+  console.log(typeof number);
+  // number
+  console.log(Number.isInteger(number));
+  // true
+
+  let float = 99.99;
+  console.log(Number.isInteger(float));
+  // false
+}
+
+// NaN 类型  期待是一个数字而不是数字
+console.clear();
+{
+  console.log(Number("hello"));
+  // NaN
+
+  console.log(10 / "hello");
+  // NaN
+
+  console.log(NaN == NaN);
+  // false
+
+  let numWithStr = "99years";
+  console.log(Number(numWithStr));
+  // NaN
+
+  console.log(parseInt(numWithStr));
+  // 99
+
+  let num1 = "abc11def";
+  console.log(parseInt(num1));
+  // NaN
+
+  let num2 = "33.88pound";
+  console.log(parseFloat(num2));
+  // 33.88
+}
+console.clear();
+
+// 数学计算
+{
+  console.log(Math.max(1, 2, 3, 4, 5, 6, 7));
+  // 7
+
+  // 向下舍入
+  console.log(Math.floor(3.9));
+  // 3
+
+  // 向上舍入
+  console.log(Math.ceil(3.1));
+  // 4
+
+  // 四舍五入
+  console.log(Math.round(3.4));
+  // 3
+  console.log(Math.round(3.6));
+  // 4
+
+  // 舍弃小数点后所有数据
+  console.log(Math.trunc(3.343453454));
+  // 3
+
+  // 四舍五入到指定位数
+  console.log((3.1415926).toFixed(2));
+  // String: 3.14
+
+  // Math.random()  0 <= ~ <1
+  randomNum = Math.random().toFixed(1) * 10;
+  console.log(randomNum);
+
+  // 区间公式 min + Math.floor(Math.random() * (max - min + 1))
+  rand = 1 + Math.floor(Math.random() * (10 - 1 + 1));
+  console.log(rand);
+}
+```
+
 ### NaN
 
 ```javascript
@@ -228,3 +313,87 @@ let num2 = "33.88pound";
 console.log(parseFloat(num2));
 // 33.88
 ```
+
+## 时间处理
+
+```javascript
+{
+  const date = new Date();
+  console.log(date);
+  console.log(typeof date);
+  // object
+
+  console.log(date * 1);
+  // 返回时间戳
+
+  const da = Date();
+  console.log(da);
+  console.log(typeof da);
+  // string
+
+  // 直接获取时间戳
+  console.log(Date.now());
+
+  const start = Date.now();
+
+  for (let i = 0; i < 200000000; i++) {}
+
+  const end = Date.now();
+  console.log(end - start);
+  // 返回毫秒
+  console.log(((end - start) / 1000).toFixed(2) + " seconds");
+  // 转换为秒
+
+  // 时间类型转换为时间戳
+  console.log(date * 1);
+  console.log(Number(date));
+  console.log(date.valueOf());
+  console.log(date.getTime());
+
+  // 转换为ISO时间
+  const timeStamp = date.valueOf();
+  console.log(new Date(timeStamp));
+  // Wed Oct 27 2021 19:53:10 GMT+0800 (中国标准时间)
+}
+console.clear();
+{
+  // 日期封装函数
+  const date = new Date(1999, 1, 12, 22, 10, 00);
+  console.log(date.getTime());
+  // 918828600000
+  console.log(date.getFullYear());
+  // 1999
+  console.log(date.getMonth());
+  // 1
+  console.log(date.getDate());
+  // 12
+  console.log(date.getHours());
+  // 22
+  console.log(date.getMinutes());
+  // 10
+  console.log(date.getSeconds());
+  // 0
+
+  function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
+    const config = {
+      YYYY: date.getFullYear(),
+      MM: date.getMonth(),
+      DD: date.getDate(),
+      HH: date.getHours(),
+      mm: date.getMinutes(),
+      ss: date.getSeconds(),
+    };
+    for (const key in config) {
+      format = format.replace(key, config[key]);
+      console.log(format);
+      console.log(key);
+    }
+    return format;
+  }
+  console.log(dateFormat(date));
+}
+```
+
+### 一些时间处理的 js 库
+
+1. momentjs [momentjs](http://momentjs.cn/)
